@@ -29,6 +29,24 @@ class App extends Component {
       //console.log(this.state.movies);
   }
 
+  addMovie = (newMovie) => {
+    axios
+    .post('http://localhost:9090/movieservice/addmovie',
+      {
+        movie_name: newMovie.movie_name,
+        movie_desc: newMovie.movie_desc
+      }
+    )
+    .then(
+      res => this.setState({
+        movies: [...this.state.movies, res.data]
+      })
+    )
+    .catch(
+      function(error) {console.log(error);}
+    )
+  }
+
   render() {
     
     return (
@@ -58,7 +76,11 @@ class App extends Component {
             </React.Fragment>
           )} />
           <Route exact path="/showratedmovies" component={RatedMovies} />
-          <Route exact path="/addmovie" component={AddMovie} />
+          <Route exact path="/addmovie" render = { props => (
+            <React.Fragment>
+              <AddMovie addMovie= {this.state.addMovie} />
+            </React.Fragment>
+          )} />
           <Route exact path="/updatemovie" component={UpdateMovie} />
         </div>
         
