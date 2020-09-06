@@ -38,9 +38,11 @@ class App extends Component {
       }
     )
     .then(
-      res => this.setState({
+      res => {this.setState({
         movies: [...this.state.movies, res.data]
-      })
+      });
+      console.log(res);
+    }
     )
     .catch(
       function(error) {console.log(error);}
