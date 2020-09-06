@@ -4,6 +4,7 @@ import Movies from './components/Movies';
 import RatedMovies from './components/RatedMovies';
 import AddMovie from './components/AddMovie';
 import UpdateMovie from './components/UpdateMovie';
+import Home from './components/Home';
 
 export default class App extends Component {
 
@@ -22,7 +23,8 @@ export default class App extends Component {
           <h1 style={{fontFamily: "Brush Script MT", fontSize: "60px"}} >Movie Time</h1>
         </header>
         <div className="navbar" style={{ backgroundColor: "#2F3274", padding:"10px", textAlign: "center"}}>
-
+          <Link to="/home" style={linkStyle}>Home</Link>
+          |
           <Link to="/showmovies" style={linkStyle}>All Movies</Link>
           |
           <Link to="/showratedmovies" style={linkStyle}>User Ratings</Link>
@@ -32,6 +34,8 @@ export default class App extends Component {
           <Link to="/updatemovie" style={linkStyle}>Update Movies</Link>
         </div>
         <div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/showmovies" component={Movies} />
           <Route exact path="/showratedmovies" component={RatedMovies} />
           <Route exact path="/addmovie" component={AddMovie} />
