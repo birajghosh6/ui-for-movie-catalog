@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import MovieItem from './MovieItem'
 
 export default class Movies extends Component {
+    
     render() {
-        return (
-            <div>
-                This is the movie list
-            </div>
-        );
+        return this.props.movies.map(
+            movieItem => (
+                <MovieItem key={movieItem.movieId} movieItem= {movieItem} />
+            )
+        )
     }
 }

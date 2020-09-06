@@ -5,20 +5,36 @@ import RatedMovies from './components/RatedMovies';
 import AddMovie from './components/AddMovie';
 import UpdateMovie from './components/UpdateMovie';
 import Home from './components/Home';
+import axios from 'axios';
 
-export default class App extends Component {
+class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: []
-    }
+  state = {
+    movies: []
   }
   
+  componentDidMount() {
+    axios
+      .get('http://localhost:9091/catalog/showmovies', {
+        responseType: 'json'
+      })
+      .then(res => 
+        this.setState({
+          movies: res.data
+        })
+      )
+      .catch(function(error) {
+        console.log(error);
+      });
+      //console.log(this.state.movies);
+  }
 
   render() {
+    
     return (
+      this.state.movies.length!==0 ?
       <BrowserRouter>
+        {console.log(this.state.movies)}
         <header style={headerStyle}>
           <h1 style={{fontFamily: "Brush Script MT", fontSize: "60px"}} >Movie Time</h1>
         </header>
@@ -36,15 +52,37 @@ export default class App extends Component {
         <div>
           <Route exact path="/" component={Home} />
           <Route exact path="/home" component={Home} />
-          <Route exact path="/showmovies" component={Movies} />
+          <Route exact path="/showmovies" render= { props => (
+            <React.Fragment>
+              <Movies movies= {this.state.movies} />
+            </React.Fragment>
+          )} />
           <Route exact path="/showratedmovies" component={RatedMovies} />
           <Route exact path="/addmovie" component={AddMovie} />
           <Route exact path="/updatemovie" component={UpdateMovie} />
         </div>
+        
       </BrowserRouter>
+      :
+      <div style={homePageStyle}>
+            Loading...
+      </div>
+      
     );
   }
 }
+
+/**
+ * <h2 style={{color:"lightgrey"}}>This is the homepage. This webpage allows you to add 
+                movies and rate them according to your liking. You 
+                may also update your previous ratings based on your 
+                new interests. Hope you have a great time browsing 
+                through our collection! <br />
+                <span style={{color: '#2F3274'}}>
+                    Click on the links above to get started!
+                </span>
+            </h2>
+ */
 
 const headerStyle = {
   background: '#333',
@@ -60,3 +98,15 @@ const linkStyle = {
   padding: '10px 30px'
   
 }
+
+const homePageStyle = {
+  textAlign: 'center',
+  fontSize: '30',
+  fontStyle: 'italic',
+  lineHeight: '50px',
+  fontWeight: 'bold',
+  padding: '10%'
+}
+
+export default App;
+

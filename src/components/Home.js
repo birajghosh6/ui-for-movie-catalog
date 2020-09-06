@@ -2,14 +2,7 @@ import React from 'react'
 
 export default function Home() {
     return (
-        <div style={{
-            textAlign: 'center',
-            fontSize: '30',
-            fontStyle: 'italic',
-            lineHeight: '50px',
-            fontWeight: 'bold',
-            padding: '10%'
-        }}>
+        <div style={homePageStyle}>
             <h2 style={{color:"lightgrey"}}>This is the homepage. This webpage allows you to add 
                 movies and rate them according to your liking. You 
                 may also update your previous ratings based on your 
@@ -25,9 +18,11 @@ export default function Home() {
     )
 }
 
-/*const homePageStyle = {
-    color: "#005644",
-    textAlign: "center",
-    padding: "25%"
-
-}*/
+const homePageStyle = {
+    textAlign: 'center',
+    fontSize: '30',
+    fontStyle: 'italic',
+    lineHeight: '50px',
+    fontWeight: 'bold',
+    padding: '10%'
+}
