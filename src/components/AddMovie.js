@@ -12,6 +12,7 @@ export default class AddMovie extends Component {
 
     onSubmitMovie = (e) => {
         e.preventDefault();
+        alert("Movie successfully added!")
         this.props.addMovie(this.state);
         this.setState({
             movie_name: '',
@@ -22,17 +23,21 @@ export default class AddMovie extends Component {
     render() {
         return (
             <div style={{   textAlign: "center", 
-                            width: '50%', 
-                            marginTop: '20px',
+                            width: '45%', 
+                            marginTop: '30px',
                             marginLeft: 'auto',
                             marginRight: 'auto',
+                            outline: 'gray auto 1px',
+                            backgroundColor: 'lavender'
                             
                         }}>
-                <form onSubmit={this.onSubmitMovie}>
-
+                <form onSubmit={this.onSubmitMovie} style={{
+                    padding: '15px',
+                    borderRadius: '8px'
+                }}>
                     <div className="rows">
                     <div className="column">
-                    <label htmlFor="movie_name">Movie Name</label>
+                    <label style={{labelStyle}} htmlFor="movie_name">Movie Name</label>
                     <input  type='text' 
                             id="movie_name" 
                             name="movie_name"
@@ -46,7 +51,7 @@ export default class AddMovie extends Component {
                     
                     <div className="column">
                     
-                    <label htmlFor="movie_desc">The Synopsis</label>                 
+                    <label style={{labelStyle}} htmlFor="movie_desc">The Synopsis</label>                 
                     <input  type='text' 
                             id="movie_desc" 
                             name="movie_desc"
@@ -64,18 +69,20 @@ export default class AddMovie extends Component {
                             
                     />
                 </form>
-            </div>
+            </div>               
+
         );
     }
 }
 
 const inputStyle = {
-    borderRadius: '4px',
+    borderRadius: '8px',
     border: '2px solid #ccc',
     boxSizing: 'border-box',
     margin: '8px',
-    padding: '10px',
-    width: '50%'
+    padding: '15px',
+    width: '80%'
+    
 }
 
 const submitStyle = {
@@ -83,9 +90,15 @@ const submitStyle = {
     backgroundColor: '#4CAF50', 
     color: '#fff', 
     margin: '15px 0px', 
-    borderRadius: '4px', 
+    borderRadius: '8px', 
     cursor: 'pointer', 
     border: 'none',
     padding: '10px'
+}
+
+//absolutely useless
+const labelStyle = {
+    textDecorationColor: 'purple',
+    fontWeight: 'bold'
 }
 

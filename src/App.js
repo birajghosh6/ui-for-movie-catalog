@@ -42,6 +42,24 @@ class App extends Component {
     
   }
 
+  updateMovie = (updatedMovie) => {
+    axios
+      .put(`http://localhost:9090/movieservice/updatemovie/${updatedMovie.movieId}`, 
+            updatedMovie)
+      .then(res => this.setState({
+          movies: [...this.state.movies.filter(
+              movieItr => movieItr.movieId!==updatedMovie.movieId
+          ), res.data]
+      }))
+      .catch(
+        function (error) {console.log(error);}
+      );
+      alert("Movie Name: " +
+            updatedMovie.movie_name +
+            "\n\nSuccessfully updated!"
+      );
+  }
+
   render() {
     
     return (
@@ -75,10 +93,16 @@ class App extends Component {
           <Route exact path="/showratedmovies" component={RatedMovies} />
           <Route exact path="/addmovie" render = { props => (
             <React.Fragment>
-              <AddMovie addMovie= {this.addMovie} />
+                <AddMovie addMovie= {this.addMovie} />
             </React.Fragment>
           )} />
-          <Route exact path="/updatemovie" component={UpdateMovie} />
+          <Route exact path="/updatemovie" render = { props => (
+            <React.Fragment>
+                <UpdateMovie updateMovie={this.updateMovie} />
+            </React.Fragment>
+          )
+
+          } />
         </div>
         
       </BrowserRouter>
