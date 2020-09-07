@@ -22,8 +22,11 @@ export default class AddMovie extends Component {
     render() {
         return (
             <div style={{   textAlign: "center", 
-                            width: '90%', 
-                            marginTop: '8%'
+                            width: '50%', 
+                            marginTop: '20px',
+                            marginLeft: 'auto',
+                            marginRight: 'auto',
+                            
                         }}>
                 <form onSubmit={this.onSubmitMovie}>
 
@@ -72,7 +75,7 @@ const inputStyle = {
     boxSizing: 'border-box',
     margin: '8px',
     padding: '10px',
-    width: '50%',
+    width: '50%'
 }
 
 const submitStyle = {

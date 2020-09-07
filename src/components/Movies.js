@@ -4,10 +4,12 @@ import MovieItem from './MovieItem'
 export default class Movies extends Component {
     
     render() {
-        return this.props.movies.map(
+        return <div style={{}}>
+            {this.props.movies.map(
             movieItem => (
                 <MovieItem key={movieItem.movieId} movieItem= {movieItem} />
             )
-        )
+        )}
+        </div>
     }
 }

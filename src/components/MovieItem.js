@@ -3,9 +3,14 @@ import React, { Component } from 'react'
 export default class MovieItem extends Component {
     render() {
         return (
-            <div style={{backgroundColor: '#ADD8E6'}} key={this.props.movieItem.movieId} >
+            <div    style={{
+                        backgroundColor: '#DCC943',
+                        width: '70%',
+                        margin: 'auto'
+                    }} 
+                    key={this.props.movieItem.movieId} >
                 <h3 style={{
-                    backgroundColor: "#2F3274",
+                    backgroundColor: "#2B1D12",
                     color:'#fff',
                     padding: '10px',
                     textAlign: 'center',
