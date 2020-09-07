@@ -30,31 +30,26 @@ class App extends Component {
   }
 
   addMovie = (newMovie) => {
+    console.log(newMovie);
     axios
-    .post('http://localhost:9090/movieservice/addmovie',
-      {
-        movie_name: newMovie.movie_name,
-        movie_desc: newMovie.movie_desc
-      }
+    .post('http://localhost:9090/movieservice/addmovie', newMovie,
+    //{responseType: 'json'}
     )
-    .then(
-      res => {this.setState({
-        movies: [...this.state.movies, res.data]
-      });
-      console.log(res);
-    }
-    )
-    .catch(
-      function(error) {console.log(error);}
-    )
+    .then(res => this.setState({
+      movies: [...this.state.movies, res.data]
+    }))
+    .catch(function(error) {console.log(error)});
+    
   }
 
   render() {
     
     return (
-      this.state.movies.length!==0 ?
+      //this.state.movies.length!==0 ?
       <BrowserRouter>
-        {console.log(this.state.movies)}
+        {
+          //console.log(this.state.movies)
+        }
         <header style={headerStyle}>
           <h1 style={{fontFamily: "Brush Script MT", fontSize: "60px"}} >Movie Time</h1>
         </header>
@@ -80,17 +75,17 @@ class App extends Component {
           <Route exact path="/showratedmovies" component={RatedMovies} />
           <Route exact path="/addmovie" render = { props => (
             <React.Fragment>
-              <AddMovie addMovie= {this.state.addMovie} />
+              <AddMovie addMovie= {this.addMovie} />
             </React.Fragment>
           )} />
           <Route exact path="/updatemovie" component={UpdateMovie} />
         </div>
         
       </BrowserRouter>
-      :
-      <div style={homePageStyle}>
+      /*:
+      (<div style={homePageStyle}>
             Loading...
-      </div>
+      </div>)*/
       
     );
   }
@@ -123,14 +118,14 @@ const linkStyle = {
   
 }
 
-const homePageStyle = {
+/*const homePageStyle = {
   textAlign: 'center',
   fontSize: '30',
   fontStyle: 'italic',
   lineHeight: '50px',
   fontWeight: 'bold',
   padding: '10%'
-}
+}*/
 
 export default App;
 

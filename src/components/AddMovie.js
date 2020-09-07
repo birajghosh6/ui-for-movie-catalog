@@ -25,7 +25,10 @@ export default class AddMovie extends Component {
                             width: '90%', 
                             marginTop: '8%'
                         }}>
-                <form>
+                <form onSubmit={this.onSubmitMovie}>
+
+                    <div className="rows">
+                    <div className="column">
                     <label htmlFor="movie_name">Movie Name</label>
                     <input  type='text' 
                             id="movie_name" 
@@ -35,8 +38,12 @@ export default class AddMovie extends Component {
                             value={this.state.movie_name}
                             placeholder= "Enter a name"
                     />
-                    <br />
-                    <label htmlFor="movie_desc">Synopsis</label>
+                    
+                    </div>
+                    
+                    <div className="column">
+                    
+                    <label htmlFor="movie_desc">The Synopsis</label>                 
                     <input  type='text' 
                             id="movie_desc" 
                             name="movie_desc"
@@ -45,10 +52,13 @@ export default class AddMovie extends Component {
                             value={this.state.movie_desc}
                             placeholder= "About the movie.."
                     />
+                    </div>                      
+                    </div>
+                    
                     <input  type="submit"
                             style={submitStyle} 
                             value="Submit"
-                            onSubmit={this.onSubmitMovie}
+                            
                     />
                 </form>
             </div>
@@ -62,14 +72,14 @@ const inputStyle = {
     boxSizing: 'border-box',
     margin: '8px',
     padding: '10px',
-    width: '50%'
+    width: '50%',
 }
 
 const submitStyle = {
-    width: '50%', 
+    width: '25%', 
     backgroundColor: '#4CAF50', 
     color: '#fff', 
-    margin: '8px 0px', 
+    margin: '15px 0px', 
     borderRadius: '4px', 
     cursor: 'pointer', 
     border: 'none',
