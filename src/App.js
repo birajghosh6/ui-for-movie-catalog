@@ -12,6 +12,8 @@ class App extends Component {
   state = {
     movies: [],
     userId: 0,
+    ratedMovies: [],
+    ratings: [],
     solidYellow: '#DCC943',
     titleBlack: '#333',
     pastelYellowBackground: '#FFFF99',
@@ -68,10 +70,31 @@ class App extends Component {
 
   setUserId = (receivedId) => {
     this.setState({
-      userId: receivedId
+      userId: receivedId,
+      ratedMovies: [],
+      ratings: []
+
     });
     //console.log("From App.js");
     //console.log(receivedId);
+  }
+
+  setRatedMovies = (ratedMovie) => {
+    this.setState({
+      ratedMovies: [...this.state.ratedMovies,ratedMovie]
+    });
+    //console.log("Rated Movies:");
+    //console.log(this.state.ratedMovies);
+    //console.log(rated);
+  }
+
+  setRatings = (newRatings) => {
+    this.setState({
+      ratings: newRatings
+    });
+    //console.log("ratings:");
+    //console.log(this.state.ratings);
+    //console.log(newRatings);
   }
 
   render() {
@@ -88,7 +111,8 @@ class App extends Component {
               fontFamily: "Brush Script MT", 
               fontSize: "60px",
               paddingTop: '25px',
-              paddingBottom: '-45px'
+              paddingBottom: '-5px',
+              marginTop: '-10px'
             }} 
           >
             Movie Time
@@ -134,7 +158,11 @@ class App extends Component {
           )} />
           <Route exact path="/home" render = { props => (
             <React.Fragment>
-                <Home setUserId= {this.setUserId} />
+                <Home 
+                  setUserId= {this.setUserId}
+                  setRatings ={this.setRatings}
+                  setRatedMovies = {this.setRatedMovies}
+                />
             </React.Fragment>
           )} />
           <Route exact path="/showmovies" render= { props => (
@@ -144,7 +172,10 @@ class App extends Component {
           )} />
           <Route exact path="/showratedmovies" render = { props => (
             <React.Fragment>
-                <RatedMovies />
+                <RatedMovies 
+                  ratedMovies ={this.state.ratedMovies}
+                  ratings = {this.state.ratings}
+                />
             </React.Fragment>
           )} />
           <Route exact path="/addmovie" render = { props => (

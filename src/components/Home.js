@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export default class Home extends Component {
 
@@ -8,11 +9,42 @@ export default class Home extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        //console.log(this.state.userId);
+        console.log("User ID:"+this.state.userId);
         this.props.setUserId(this.state.userId);
+        axios
+        .get(`http://localhost:9091/catalog/showratedmovie/${this.state.userId}`,{
+            responseType: 'json'
+        })
+        .then(
+            res => {
+                
+                this.props.setRatings(res.data);
+                //working on fetching rated movies based on ratings array
+                for (let i = 0; i < res.data.length; i++) {
+                    axios.get(`http://localhost:9090/movieservice/movie/${parseInt(res.data[i].movieId)}`, {
+                        responseType: 'json'
+                    })
+                    .then(
+                        ratedMovie => {
+                            this.props.setRatedMovies(ratedMovie.data);
+                        }
+                    )
+                    .catch(
+                        function(error) {
+                            console.log(error);
+                        }
+                    );
+                }
+
+            },//could have used a catch method chaining with error function
+            error => {
+                console.log(error);
+            }
+        );
+        
         this.setState({
             userId: 0
-        })
+        });
     }
 
     onClickSubmitButton = (e) => {
