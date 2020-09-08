@@ -82,86 +82,93 @@ export default class UpdateMovie extends Component {
     render() {
         //console.log(this.state.movies);
         return (
-            <div style={{
-                backgroundColor: 'lightblue',
-                width: '60%',
-                marginTop: '30px',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                outline: '#000 auto 1px',
-                textAlign: 'center'
+            <body style={{
+              backgroundColor: '#FFFF99',
+              width: '100%',
+              height: '100%',
+              position: 'fixed'
             }}>
-                <form onSubmit={this.handleSubmit} style={{
-                      padding: '10px'
-                }} >
-                  <select value={this.state.value} onChange={this.handleDropDownChange} style={{
-                        fontSize: '20px'
+              <div style={{
+                  backgroundColor: '#333',
+                  width: '60%',
+                  height: 'auto',
+                  marginTop: '30px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  outline: '#000 auto 1px',
+                  textAlign: 'center'
+              }}>
+                  <form onSubmit={this.handleSubmit} style={{
+                        padding: '10px'
                   }} >
-                      <option value="" >
-                        Select--
-                      </option>
-                      {
-                        this.state.movies.map(
-                          movieItr => (
-                            <option key={movieItr.movieId} value={""+movieItr.movieId} >
-                              {movieItr.movie_name}
-                            </option>
+                    <select value={this.state.value} onChange={this.handleDropDownChange} style={{
+                          fontSize: '20px'
+                    }} >
+                        <option value="" >
+                          Select--
+                        </option>
+                        {
+                          this.state.movies.map(
+                            movieItr => (
+                              <option key={movieItr.movieId} value={""+movieItr.movieId} >
+                                {movieItr.movie_name}
+                              </option>
+                            )
                           )
-                        )
-                      }
-                  </select>
-                  <br />
-                  <div style={{
-                    padding: '10px',
-                    //outline: '#000 auto 1px',
-                    marginTop: '30px',
-                    marginBottom: '30px',
-                    paddingTop: '25px',
-                    paddingBottom: '25px',
-                    backgroundColor: 'lightblue'
-                    //backgroundColor: '#2F3274'
-                  }} >
-                    <label htmlFor="movie_name" style={labelStyle}>
-                      Update Name:
-                      <br />
-                      
-                    </label>
-                    <input  style={inputStyle} 
-                              type="text" 
-                              id="movie_name"
-                              name="movie_name"
-                              onChange= {this.handleNameChange}
-                              value= {this.state.updatedMovie.movie_name || ''}
-                              placeholder= "Enter a name"
-                      />
+                        }
+                    </select>
                     <br />
-                    <br/>
-                    <br />
-                    <label htmlFor="movie_desc" style={labelStyle}>
-                      Update Synopsis:
+                    <div style={{
+                      padding: '10px',
+                      //outline: '#000 auto 1px',
+                      marginTop: '30px',
+                      marginBottom: '30px',
+                      paddingTop: '25px',
+                      paddingBottom: '25px',
+                      backgroundColor: '#DCC943'
+                    }} >
+                      <label htmlFor="movie_name" style={labelStyle}>
+                        Update Name:
+                        <br />
+                        
+                      </label>
+                      <input  style={inputStyle} 
+                                type="text" 
+                                id="movie_name"
+                                name="movie_name"
+                                onChange= {this.handleNameChange}
+                                value= {this.state.updatedMovie.movie_name || ''}
+                                placeholder= "Enter a name"
+                        />
                       <br />
-                      
-                    </label>
-                    <input  style={inputStyle} 
-                              type="text" 
-                              id="movie_desc"
-                              name="movie_desc"
-                              onChange= {this.handleDescriptionChange}
-                              value= {this.state.updatedMovie.movie_desc || ''}
-                              placeholder= "About the movie ..."
-                      />
-                  </div>
-                  <input type="submit" value="Update Movie" style={{
-                          cursor: 'pointer',
-                          backgroundColor: 'green',
-                          marginBottom: '5px',
-                          padding: '8px',
-                          color: '#fff',
-                          border: '5px solid deepgreen',
-                          borderRadius: '5px'
-                  }} />
-                </form>
-            </div>
+                      <br/>
+                      <br />
+                      <label htmlFor="movie_desc" style={labelStyle}>
+                        Update Synopsis:
+                        <br />
+                        
+                      </label>
+                      <input  style={inputStyle} 
+                                type="text" 
+                                id="movie_desc"
+                                name="movie_desc"
+                                onChange= {this.handleDescriptionChange}
+                                value= {this.state.updatedMovie.movie_desc || ''}
+                                placeholder= "About the movie ..."
+                        />
+                    </div>
+                    <input type="submit" value="Update Movie" style={{
+                            cursor: 'pointer',
+                            backgroundColor: 'green',
+                            marginBottom: '5px',
+                            padding: '8px',
+                            color: '#fff',
+                            border: '5px solid deepgreen',
+                            borderRadius: '5px'
+                    }} />
+                  </form>
+              </div>
+            </body>
         );
     }
 }
@@ -175,7 +182,8 @@ const inputStyle = {
   width: '80%',
   fontSize: '18px',
   fontWeight: 'bold',
-  fontFamily: 'Verdana'
+  fontFamily: 'Verdana',
+  backgroundColor: 'lightgray'
 }
 
 const labelStyle = {

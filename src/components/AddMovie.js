@@ -22,54 +22,67 @@ export default class AddMovie extends Component {
         
     render() {
         return (
-            <div style={{   textAlign: "center", 
-                            width: '45%', 
-                            marginTop: '30px',
-                            marginLeft: 'auto',
-                            marginRight: 'auto',
-                            outline: 'gray auto 1px',
-                            backgroundColor: 'lavender'
-                            
+            <body style={{
+                backgroundColor: '#FFFF99',
+                width: '100%',
+                height: '100%',
+                position: 'fixed'
+            }}>
+                <div style={{   textAlign: "center", 
+                                width: '45%', 
+                                height: 'auto',
+                                //marginTop: '30px',
+                                marginLeft: 'auto',
+                                marginRight: 'auto',
+                                outline: 'gray auto 1px',
+                                backgroundColor: '#333',
+                                color: '#DCC943'
+                                //position: 'static'
+                                
+                            }}>
+                    <form onSubmit={this.onSubmitMovie} style={{
+                        padding: '15px',
+                        borderRadius: '8px',
+                        marginTop: '30px'
+                    }}>
+                        <div className="rows">
+                        <div className="column">
+                        <label style={{labelStyle}} htmlFor="movie_name">MOVIE NAME</label>
+                        <input  type='text' 
+                                id="movie_name" 
+                                name="movie_name"
+                                style={inputStyle}
+                                onChange={this.onChangeInput}
+                                value={this.state.movie_name}
+                                placeholder= "Enter a name"
+                        />
+                        
+                        </div>
+                        
+                        <div className="column" style={{
+                            marginTop: '15px'
                         }}>
-                <form onSubmit={this.onSubmitMovie} style={{
-                    padding: '15px',
-                    borderRadius: '8px'
-                }}>
-                    <div className="rows">
-                    <div className="column">
-                    <label style={{labelStyle}} htmlFor="movie_name">Movie Name</label>
-                    <input  type='text' 
-                            id="movie_name" 
-                            name="movie_name"
-                            style={inputStyle}
-                            onChange={this.onChangeInput}
-                            value={this.state.movie_name}
-                            placeholder= "Enter a name"
-                    />
-                    
-                    </div>
-                    
-                    <div className="column">
-                    
-                    <label style={{labelStyle}} htmlFor="movie_desc">The Synopsis</label>                 
-                    <input  type='text' 
-                            id="movie_desc" 
-                            name="movie_desc"
-                            style={inputStyle}
-                            onChange={this.onChangeInput}
-                            value={this.state.movie_desc}
-                            placeholder= "About the movie.."
-                    />
-                    </div>                      
-                    </div>
-                    
-                    <input  type="submit"
-                            style={submitStyle} 
-                            value="Submit"
-                            
-                    />
-                </form>
-            </div>               
+                        
+                        <label style={{labelStyle}} htmlFor="movie_desc">THE SYNOPSIS</label>                 
+                        <input  type='text' 
+                                id="movie_desc" 
+                                name="movie_desc"
+                                style={inputStyle}
+                                onChange={this.onChangeInput}
+                                value={this.state.movie_desc}
+                                placeholder= "About the movie.."
+                        />
+                        </div>                      
+                        </div>
+                        
+                        <input  type="submit"
+                                style={submitStyle} 
+                                value="Submit"
+                                
+                        />
+                    </form>
+                </div>
+            </body>            
 
         );
     }
