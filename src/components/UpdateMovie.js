@@ -89,13 +89,13 @@ export default class UpdateMovie extends Component {
               position: 'fixed'
             }}>
               <div style={{
-                  backgroundColor: '#333',
+                  backgroundColor: '#DCC943',
                   width: '60%',
                   height: 'auto',
                   marginTop: '30px',
                   marginLeft: 'auto',
                   marginRight: 'auto',
-                  outline: '#000 auto 1px',
+                  outline: '#DCC943 auto 1px',
                   textAlign: 'center'
               }}>
                   <form onSubmit={this.handleSubmit} style={{
@@ -125,7 +125,7 @@ export default class UpdateMovie extends Component {
                       marginBottom: '30px',
                       paddingTop: '25px',
                       paddingBottom: '25px',
-                      backgroundColor: '#DCC943'
+                      backgroundColor: '#333'
                     }} >
                       <label htmlFor="movie_name" style={labelStyle}>
                         Update Name:
@@ -188,5 +188,6 @@ const inputStyle = {
 
 const labelStyle = {
   fontSize: '25px',
-  fontFamily: 'Verdana'
+  fontFamily: 'Times New Roman',
+  color: '#DCC943'
 }

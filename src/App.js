@@ -10,7 +10,13 @@ import axios from 'axios';
 class App extends Component {
 
   state = {
-    movies: []
+    movies: [],
+    userId: 0,
+    solidYellow: '#DCC943',
+    titleBlack: '#333',
+    pastelYellowBackground: '#FFFF99',
+    navbarBlue: '#2F3274',
+    fadedBlueBackground: '#7FD1E8'
   }
   
   componentDidMount() {
@@ -60,6 +66,14 @@ class App extends Component {
       );
   }
 
+  setUserId = (receivedId) => {
+    this.setState({
+      userId: receivedId
+    });
+    //console.log("From App.js");
+    //console.log(receivedId);
+  }
+
   render() {
     
     return (
@@ -69,9 +83,39 @@ class App extends Component {
           //console.log(this.state.movies)
         }
         <header style={headerStyle}>
-          <h1 style={{fontFamily: "Brush Script MT", fontSize: "60px"}} >Movie Time</h1>
+          <h1 
+            style={{
+              fontFamily: "Brush Script MT", 
+              fontSize: "60px",
+              paddingTop: '25px',
+              paddingBottom: '-45px'
+            }} 
+          >
+            Movie Time
+          </h1>
+          <h3 style = {{
+            textAlign: 'right',
+            marginRight: '20px',
+            fontWeight: 'normal',
+            paddingBottom: '0px'
+          }} > 
+            Active User ID : {" "}
+              {this.state.userId === 0 ? 'None':this.state.userId}
+          </h3>
+          
         </header>
-        <div className="navbar" style={{ backgroundColor: "#2F3274", padding:"10px", textAlign: "center"}}>
+        <div 
+          className="navbar" 
+          style={{ 
+              backgroundColor: "#DCC943", 
+              padding:"10px", 
+              textAlign: "center",
+              width: '100%',
+              marginTop: '-19px',
+              //textShadow: '1px 1px 2px #333',
+              fontWeight: 'bolder'
+          }}
+        >
           <Link to="/home" style={linkStyle}>Home</Link>
           |
           <Link to="/showmovies" style={linkStyle}>All Movies</Link>
@@ -83,14 +127,26 @@ class App extends Component {
           <Link to="/updatemovie" style={linkStyle}>Update Movies</Link>
         </div>
         <div>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/" render = { props => (
+            <React.Fragment>
+                <Home />
+            </React.Fragment>
+          )} />
+          <Route exact path="/home" render = { props => (
+            <React.Fragment>
+                <Home setUserId= {this.setUserId} />
+            </React.Fragment>
+          )} />
           <Route exact path="/showmovies" render= { props => (
             <React.Fragment>
               <Movies movies= {this.state.movies} />
             </React.Fragment>
           )} />
-          <Route exact path="/showratedmovies" component={RatedMovies} />
+          <Route exact path="/showratedmovies" render = { props => (
+            <React.Fragment>
+                <RatedMovies />
+            </React.Fragment>
+          )} />
           <Route exact path="/addmovie" render = { props => (
             <React.Fragment>
                 <AddMovie addMovie= {this.addMovie} />
@@ -132,13 +188,16 @@ const headerStyle = {
   color: '#fff',
   textAlign: 'center',
   textDecoration: 'none',
-  padding: '1px'
+  marginBottom: '0px'
 }
 
 const linkStyle = {
-  color: '#FFF',
+  //color: '#FFF',
   textDecoration: 'none',
-  padding: '10px 30px'
+  marginTop: '-20px',
+  padding: '10px 30px',
+  fontFamily: 'Copperplate',
+  fontSize: '18px'
   
 }
 
