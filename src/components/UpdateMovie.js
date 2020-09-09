@@ -55,7 +55,7 @@ export default class UpdateMovie extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      console.log(this.state.updatedMovie);
+      //console.log(this.state.updatedMovie);
       this.props.updateMovie(this.state.updatedMovie);
     }
 

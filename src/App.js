@@ -34,11 +34,9 @@ class App extends Component {
       .catch(function(error) {
         console.log(error);
       });
-      //console.log(this.state.movies);
   }
 
   addMovie = (newMovie) => {
-    console.log(newMovie);
     axios
     .post('http://localhost:9090/movieservice/addmovie', newMovie,
     //{responseType: 'json'}
@@ -54,11 +52,19 @@ class App extends Component {
     axios
       .put(`http://localhost:9090/movieservice/updatemovie/${updatedMovie.movieId}`, 
             updatedMovie)
-      .then(res => this.setState({
-          movies: [...this.state.movies.filter(
-              movieItr => movieItr.movieId!==updatedMovie.movieId
-          ), res.data]
-      }))
+      .then(res =>  {
+        this.setState({
+          movies: [...this.state.movies.filter(movieItr => movieItr.movieId!==updatedMovie.movieId), 
+                  res.data]
+        });
+        let tempRatedMovies = [...this.state.ratedMovies.filter(
+          ratedMovieItr => ratedMovieItr.movieId !== res.data.movieId
+        )];
+        if(tempRatedMovies.length !== this.state.ratedMovies.length)
+          this.setState({
+            ratedMovies: [...tempRatedMovies,res.data]
+          });
+      })
       .catch(
         function (error) {console.log(error);}
       );
@@ -75,26 +81,18 @@ class App extends Component {
       ratings: []
 
     });
-    //console.log("From App.js");
-    //console.log(receivedId);
   }
 
   setRatedMovies = (ratedMovie) => {
     this.setState({
       ratedMovies: [...this.state.ratedMovies,ratedMovie]
     });
-    //console.log("Rated Movies:");
-    //console.log(this.state.ratedMovies);
-    //console.log(rated);
   }
 
   setRatings = (newRatings) => {
     this.setState({
       ratings: newRatings
     });
-    //console.log("ratings:");
-    //console.log(this.state.ratings);
-    //console.log(newRatings);
   }
 
   render() {
@@ -102,9 +100,6 @@ class App extends Component {
     return (
       //this.state.movies.length!==0 ?
       <BrowserRouter>
-        {
-          //console.log(this.state.movies)
-        }
         <header style={headerStyle}>
           <h1 
             style={{
@@ -174,7 +169,7 @@ class App extends Component {
             <React.Fragment>
                 <RatedMovies 
                   ratedMovies ={this.state.ratedMovies}
-                  //ratings = {this.state.ratings}
+                  ratings = {this.state.ratings}
                 />
             </React.Fragment>
           )} />
@@ -202,18 +197,6 @@ class App extends Component {
   }
 }
 
-/**
- * <h2 style={{color:"lightgrey"}}>This is the homepage. This webpage allows you to add 
-                movies and rate them according to your liking. You 
-                may also update your previous ratings based on your 
-                new interests. Hope you have a great time browsing 
-                through our collection! <br />
-                <span style={{color: '#2F3274'}}>
-                    Click on the links above to get started!
-                </span>
-            </h2>
- */
-
 const headerStyle = {
   background: '#333',
   color: '#fff',
@@ -231,15 +214,6 @@ const linkStyle = {
   fontSize: '18px'
   
 }
-
-/*const homePageStyle = {
-  textAlign: 'center',
-  fontSize: '30',
-  fontStyle: 'italic',
-  lineHeight: '50px',
-  fontWeight: 'bold',
-  padding: '10%'
-}*/
 
 export default App;
 

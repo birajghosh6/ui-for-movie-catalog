@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MovieItem from './MovieItem'
+import RatingItem from './RatingItem';
 
 export default class RatedMovies extends Component {
 
@@ -29,7 +29,7 @@ export default class RatedMovies extends Component {
                 >
                     {this.props.ratedMovies.map(
                     movieItem => (
-                        <MovieItem key={movieItem.movieId} movieItem= {movieItem} />
+                        <RatingItem key={movieItem.movieId} movieItem= {movieItem} ratings={this.props.ratings} />
                     ))}
                 </div>
             </div>
