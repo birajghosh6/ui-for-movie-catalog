@@ -94,7 +94,8 @@ const inputStyle = {
     boxSizing: 'border-box',
     margin: '8px',
     padding: '15px',
-    width: '80%'
+    width: '80%',
+    fontSize: '18px'
     
 }
 

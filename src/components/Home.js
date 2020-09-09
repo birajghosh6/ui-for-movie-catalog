@@ -108,7 +108,7 @@ export default class Home extends Component {
                             //textShadow: '1px 1px 0px #000',
                             textShadow: '0px 0px 1px #000',
                             marginTop: '40px',
-                            width: '70%',
+                            width: '60%',
                             marginLeft: 'auto',
                             marginRight: 'auto'
                 }}>

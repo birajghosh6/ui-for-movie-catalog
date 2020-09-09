@@ -41,11 +41,16 @@ class App extends Component {
     .post('http://localhost:9090/movieservice/addmovie', newMovie,
     //{responseType: 'json'}
     )
-    .then(res => this.setState({
+    .then(res => 
+      this.setState({
       movies: [...this.state.movies, res.data]
-    }))
+      })
+    )
     .catch(function(error) {console.log(error)});
-    
+    alert("Movie Name: " +
+            newMovie.movie_name +
+            "\n\nSuccessfully updated!"
+      );
   }
 
   updateMovie = (updatedMovie) => {
@@ -119,7 +124,13 @@ class App extends Component {
             paddingBottom: '0px'
           }} > 
             Active User ID : {" "}
-              {this.state.userId === 0 ? 'None':this.state.userId}
+              <span style={{
+                color: 'lightblue',
+                textShadow: '0px 0px 3px blue',
+                fontWeight: 'bolder'
+              }}>
+                {this.state.userId === 0 ? 'None':this.state.userId}
+              </span>
           </h3>
           
         </header>
