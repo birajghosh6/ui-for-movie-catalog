@@ -82,7 +82,7 @@ export default class UpdateMovie extends Component {
     render() {
         //console.log(this.state.movies);
         return (
-            <body style={{
+            <div style={{
               backgroundColor: '#FFFF99',
               width: '100%',
               height: '100%',
@@ -168,7 +168,7 @@ export default class UpdateMovie extends Component {
                     }} />
                   </form>
               </div>
-            </body>
+            </div>
         );
     }
 }

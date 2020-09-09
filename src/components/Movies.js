@@ -4,18 +4,18 @@ import MovieItem from './MovieItem'
 export default class Movies extends Component {
     
     render() {
-        return <body style={{
+        return <div style={{
                         backgroundColor: '#FFFF99',
-                        position: 'fixed',
+                        //position: 'fixed',
                         width: '100%',
-                        height: '100%'
+                        height: '100%',
+                        marginTop: '0px'
                         }}
                 >
-            {this.props.movies.map(
-            movieItem => (
-                <MovieItem key={movieItem.movieId} movieItem= {movieItem} />
-            )
-        )}
-        </body>
+                    {this.props.movies.map(
+                    movieItem => (
+                        <MovieItem key={movieItem.movieId} movieItem= {movieItem} />
+                    ))}
+                </div>
     }
 }

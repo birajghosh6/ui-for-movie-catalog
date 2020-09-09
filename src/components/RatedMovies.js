@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import axios from 'axios';
+import MovieItem from './MovieItem'
 
 export default class RatedMovies extends Component {
 
@@ -19,7 +19,19 @@ export default class RatedMovies extends Component {
                     width: '100%'
                 }}
             >
-                This is a list of movies rated by the user
+                <div style={{
+                        backgroundColor: '#FFFF99',
+                        //position: 'fixed',
+                        width: '100%',
+                        height: '100%',
+                        marginTop: '0px'
+                        }} 
+                >
+                    {this.props.ratedMovies.map(
+                    movieItem => (
+                        <MovieItem key={movieItem.movieId} movieItem= {movieItem} />
+                    ))}
+                </div>
             </div>
         );
     }

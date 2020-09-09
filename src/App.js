@@ -174,7 +174,7 @@ class App extends Component {
             <React.Fragment>
                 <RatedMovies 
                   ratedMovies ={this.state.ratedMovies}
-                  ratings = {this.state.ratings}
+                  //ratings = {this.state.ratings}
                 />
             </React.Fragment>
           )} />
