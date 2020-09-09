@@ -1,6 +1,18 @@
 import React, { Component } from 'react'
 
 export default class RatingItem extends Component {
+    state = {
+        currentRating: 0
+    }
+
+    printStars = (count) => {
+        let starString = ""
+        for (let i = 0; i < count; i++) {
+            starString = starString + "☆";
+        }
+        return starString;
+    }
+
     render() {
         return (
             <div    style={{
@@ -24,9 +36,24 @@ export default class RatingItem extends Component {
                     }}>
                     {this.props.movieItem.movie_name}
                     <br />
-                    {(this.props.ratings.filter(
-                        ratingsItr => parseInt(ratingsItr.movieId)===parseInt(this.props.movieItem.movieId)
-                    ))[0].rating}
+                    <br />
+                    {"Rated: "}
+                    <span style={{
+                        color: 'yellow',
+                        textShadow: '0px 0px 2px #fff'
+                    }}>
+                        {
+                            this.printStars(
+                                this.props.ratings.filter(
+                                    ratingsItr => 
+                                        parseInt(ratingsItr.movieId)
+                                        ===
+                                        parseInt(this.props.movieItem.movieId)
+                                )[0].rating
+                            )
+                        }
+                    </span>
+
                 </h3>
                 <p style={{
                     paddingBottom:'15px',
